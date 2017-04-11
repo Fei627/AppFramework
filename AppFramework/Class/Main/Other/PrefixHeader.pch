@@ -1,0 +1,42 @@
+//
+//  PrefixHeader.pch
+//  AppFramework
+//
+//  Created by gaojianlong on 2017/4/10.
+//  Copyright © 2017年 JLB. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "UIImage+Color.h"
+
+//系统版本号
+#define kSystemVersion [[UIDevice currentDevice] systemVersion]
+
+//开发的时候打印，但是发布的时候不打印的NSLog
+#ifdef DEBUG
+#define Mylog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+#define NSLog(...)
+#endif
+
+//颜色
+#define kRGBColor(r, g, b)     [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define kRGBAColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(r)/255.0 blue:(r)/255.0 alpha:a]
+#define kRandomColor           kRGBColor(arc4random_uniform(256),arc4random_uniform(256),arc4random_uniform(256))
+
+//弱引用
+#define kWeakSelf(type)   __weak typeof(type) weakSelf = type;
+
+
+//获取屏幕宽度与高度
+#define kScreenWidth \
+([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? [UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale : [UIScreen mainScreen].bounds.size.width)
+#define kScreenHeight \
+([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? [UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale : [UIScreen mainScreen].bounds.size.height)
+
+
+
+
+#endif /* PrefixHeader_pch */
